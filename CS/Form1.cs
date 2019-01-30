@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid;
-using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Views.Grid;
+using System;
+using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace Q183147
 {
@@ -20,9 +15,11 @@ namespace Q183147
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'carsDBDataSet.Cars' table. You can move, or remove it, as needed.
-            this.carsTableAdapter.Fill(this.carsDBDataSet.Cars);
-
+            Random rand = new Random();
+            var list = new BindingList<Item>();
+            for (int i = 0; i < 50; i++)
+                list.Add(new Item() { ID = i, Name = "Name" + i, Category = rand.Next(0, 5) });
+            gridControl1.DataSource = list;
         }
 
         private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
@@ -50,6 +47,12 @@ namespace Q183147
                 }
                 view.FocusedRowHandle = focusedRowHandle < 0 ? 0 : focusedRowHandle;
             }
+        }
+        public class Item
+        {
+            public int ID { get; set; }
+            public string Name { get; set; }
+            public int Category { get; set; }
         }
     }
 }

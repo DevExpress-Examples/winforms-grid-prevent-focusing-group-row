@@ -1,14 +1,9 @@
 Imports Microsoft.VisualBasic
-Imports System
-Imports System.Collections.Generic
-Imports System.ComponentModel
-Imports System.Data
-Imports System.Drawing
-Imports System.Text
-Imports System.Windows.Forms
-Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraGrid
-Imports DevExpress.XtraEditors
+Imports DevExpress.XtraGrid.Views.Grid
+Imports System
+Imports System.ComponentModel
+Imports System.Windows.Forms
 
 Namespace Q183147
 	Partial Public Class Form1
@@ -18,9 +13,12 @@ Namespace Q183147
 		End Sub
 
 		Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
-			' TODO: This line of code loads data into the 'carsDBDataSet.Cars' table. You can move, or remove it, as needed.
-			Me.carsTableAdapter.Fill(Me.carsDBDataSet.Cars)
-
+			Dim rand As New Random()
+			Dim list = New BindingList(Of Item)()
+			For i As Integer = 0 To 49
+				list.Add(New Item() With {.ID = i, .Name = "Name" & i, .Category = rand.Next(0, 5)})
+			Next i
+			gridControl1.DataSource = list
 		End Sub
 
 		Private Sub gridView1_FocusedRowChanged(ByVal sender As Object, ByVal e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles gridView1.FocusedRowChanged
@@ -49,12 +47,37 @@ Namespace Q183147
 						focusedRowHandle = view.DataRowCount - 1
 					End If
 				End If
-				If focusedRowHandle < 0 Then
-					view.FocusedRowHandle = 0
-				Else
-					view.FocusedRowHandle = focusedRowHandle
-				End If
+				view.FocusedRowHandle = If(focusedRowHandle < 0, 0, focusedRowHandle)
 			End If
 		End Sub
+		Public Class Item
+			Private privateID As Integer
+			Public Property ID() As Integer
+				Get
+					Return privateID
+				End Get
+				Set(ByVal value As Integer)
+					privateID = value
+				End Set
+			End Property
+			Private privateName As String
+			Public Property Name() As String
+				Get
+					Return privateName
+				End Get
+				Set(ByVal value As String)
+					privateName = value
+				End Set
+			End Property
+			Private privateCategory As Integer
+			Public Property Category() As Integer
+				Get
+					Return privateCategory
+				End Get
+				Set(ByVal value As Integer)
+					privateCategory = value
+				End Set
+			End Property
+		End Class
 	End Class
 End Namespace
