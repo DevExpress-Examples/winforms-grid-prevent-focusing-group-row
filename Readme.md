@@ -19,7 +19,7 @@ This example handles the [FocusedRowChanged](https://docs.devexpress.com/Windows
 
 * [Focus and Selection Handling](https://docs.devexpress.com/WindowsForms/114764/controls-and-libraries/data-grid/focus-and-selection-handling)
 <!-- feedback -->
-## Does this example address your development requirements/objectives?
+## Does This Example Address Your Development Requirements/Objectives?
 
 [<img src="https://www.devexpress.com/support/examples/i/yes-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=winforms-grid-prevent-focusing-group-row&~~~was_helpful=yes) [<img src="https://www.devexpress.com/support/examples/i/no-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=winforms-grid-prevent-focusing-group-row&~~~was_helpful=no)
 
